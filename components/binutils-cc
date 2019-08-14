@@ -1,0 +1,27 @@
+name=binutils
+version=2.32
+source=https://ftp.gnu.org/gnu/binutils/binutils-${version}.tar.xz
+
+build() {
+
+	mkdir binutils-build
+	cd binutils-build/
+
+	../configure \
+	--prefix=${LJOS}/cross-tools \
+	--target=${LJOS_TARGET} \
+	--with-sysroot=${LJOS} \
+	--disable-nls \
+	--enable-shared \
+	--disable-multilib
+
+	make configure-host
+	make -j${THREADS}
+
+	mkdir ${LJOS}/cross-tools/lib
+	ln -sv lib ${LJOS}/cross-tools/lib64
+	make install
+
+	cp -v ../include/libiberty.h ${LJOS}/usr/include
+
+}

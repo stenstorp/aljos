@@ -1,0 +1,46 @@
+name=gcc
+version=9.2.0
+source=https://ftp.gnu.org/gnu/gcc/gcc-${version}/gcc-${version}.tar.xz
+
+build() {
+
+	source ${COMPONENTS_DIR}/gmp
+        gmp_filename="${source##*/}"
+        source ${COMPONENTS_DIR}/mpc
+        mpc_filename="${source##*/}"
+        source ${COMPONENTS_DIR}/mpfr
+        mpfr_filename="${source##*/}"
+
+        source ${COMPONENTS_DIR}/gcc-cc
+
+        mkdir gmp mpc mpfr
+        tar -C gmp -xf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
+        tar -C mpc -xf ${SOURCE_DIR}/${mpc_filename} --strip-components 1
+        tar -C mpfr -xf ${SOURCE_DIR}/${mpfr_filename} --strip-components 1
+
+	mkdir gcc-build
+	cd gcc-build/
+
+	AR=ar LDFLAGS="-Wl,-rpath,${LJOS}/cross-tools/lib" \
+	../configure \
+	--prefix=${LJOS}/cross-tools \
+	--build=${LJOS_HOST} \
+	--target=${LJOS_TARGET} \
+	--host=${LJOS_HOST} \
+	--with-sysroot=${LJOS} \
+	--disable-nls \
+	--enable-shared \
+	--enable-languages=c,c++ \
+	--enable-c99 \
+	--enable-long-long \
+	--with-mpfr-include=$(pwd)/../mpfr/src \
+	--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
+	--disable-multilib \
+	--with-arch=${LJOS_CPU}
+
+	make -j${THREADS}
+	make install
+
+	cp -v ${LJOS}/cross-tools/${LJOS_TARGET}/lib64/libgcc_s.so.1 ${LJOS}/lib64
+
+}

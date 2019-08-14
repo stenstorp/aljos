@@ -1,0 +1,3 @@
+name=mpfr
+version=4.0.2
+source=https://ftp.gnu.org/gnu/mpfr/mpfr-${version}.tar.xz

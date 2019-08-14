@@ -1,0 +1,51 @@
+name=gcc
+version=9.2.0
+source=https://ftp.gnu.org/gnu/gcc/gcc-${version}/gcc-${version}.tar.xz
+
+build() {
+
+	source ${COMPONENTS_DIR}/gmp
+	gmp_filename="${source##*/}"
+	source ${COMPONENTS_DIR}/mpc
+	mpc_filename="${source##*/}"
+	source ${COMPONENTS_DIR}/mpfr
+	mpfr_filename="${source##*/}"
+
+	source ${COMPONENTS_DIR}/gcc-static-cc
+
+	mkdir gmp mpc mpfr
+	tar -C gmp -xf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
+	tar -C mpc -xf ${SOURCE_DIR}/${mpc_filename} --strip-components 1
+	tar -C mpfr -xf ${SOURCE_DIR}/${mpfr_filename} --strip-components 1
+
+	mkdir gcc-static
+	cd gcc-static/
+
+	AR=ar LDFLAGS="-Wl,-rpath,${LJOS}/cross-tools/lib" \
+	../configure \
+	--prefix=${LJOS}/cross-tools \
+	--build=${LJOS_HOST} \
+	--host=${LJOS_HOST} \
+	--target=${LJOS_TARGET} \
+	--with-sysroot=${LJOS}/target \
+	--disable-nls \
+	--disable-shared \
+	--with-mpfr-include=$(pwd)/../mpfr/src \
+	--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
+	--without-headers \
+	--with-newlib \
+	--disable-decimal-float \
+	--disable-libgomp \
+	--disable-libmudflap \
+	--disable-libssp \
+	--disable-threads \
+	--enable-languages=c,c++ \
+	--disable-multilib \
+	--with-arch=${LJOS_CPU}
+
+	make -j${THREADS} all-gcc all-target-libgcc
+	make install-gcc install-target-libgcc
+
+	ln -vs libgcc.a `${LJOS_TARGET}-gcc -print-libgcc-file-name | sed 's/libgcc/&_eh/'`
+
+}
