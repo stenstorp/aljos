@@ -2,8 +2,8 @@
 source variables
 
 rm -rf ${LJOS}
+rm -rf ${BUILD_DIR}
 
 if [ "$1" == "all" ]; then
-	rm -rf ${BUILD_DIR}
 	rm -rf ${SOURCE_DIR}
 fi
