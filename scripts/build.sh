@@ -2,10 +2,14 @@
 source variables
 
 mkdir -p ${BUILD_DIR}
-unset name version source folder build filename
+unset name version source folder build filename cross
 
 source ${COMPONENTS_DIR}/$1
 filename="${source##*/}"
+
+if [ ! -z "$cross" ]; then
+	source cross-variables
+fi
 
 if [ ! -e ${SOURCE_DIR}/${filename} ]; then
 	wget -P ${SOURCE_DIR} ${source}
