@@ -13,5 +13,4 @@ build() {
 	mv -v ${LJOS}/usr/lib/libz.so.* ${LJOS}/lib
 	ln -svf ../../lib/libz.so.1 ${LJOS}/usr/lib/libz.so
 	ln -svf ../../lib/libz.so.1 ${LJOS}/usr/lib/libz.so.1
-	ln -svf ../lib/libz.so.1 ${LJOS}/lib64/libz.so.1
 }
