@@ -1,3 +1,23 @@
 name=linux
 version=4.19.66
 source=https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${version}.tar.xz
+cross=yes
+
+build() {
+
+	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- x86_64_defconfig
+
+	make -j${THREADS} ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}-
+
+	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- \
+	INSTALL_MOD_PATH=${LJOS} modules_install
+
+	cp -v arch/x86/boot/bzImage ${LJOS}/boot/vmlinuz-${version}
+	cp -v System.map ${LJOS}/boot/System.map-${version}
+	cp -v .config ${LJOS}/boot/config-${version}
+
+	${LJOS}/cross-tools/bin/depmod.pl \
+	-F ${LJOS}/boot/System.map-${version} \
+	-b ${LJOS}/lib/modules/${version}
+
+}

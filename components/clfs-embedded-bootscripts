@@ -1,3 +1,11 @@
 name=clfs-embedded-bootscripts
 version=1.0-pre5
 source=http://ftp.lfs-matrix.net/pub/clfs/conglomeration/clfs-embedded-bootscripts/clfs-embedded-bootscripts-${version}.tar.bz2
+cross=yes
+
+build() {
+
+	make DESTDIR=${LJOS}/ install-bootscripts
+	ln -sv ../rc.d/startup ${LJOS}/etc/init.d/rcS
+
+}
