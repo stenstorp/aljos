@@ -1,6 +1,10 @@
 SHELL=bash
 
-all: clean init cross-compiler system
+all: clean init cross-compiler system rootfs
+
+cross-compiler: linux-headers-cc binutils-cc gcc-static-cc glibc-cc gcc-cc
+
+system: busybox linux clfs-embedded-bootscripts zlib
 
 init:
 	@${SHELL} scripts/initial_setup.sh
@@ -11,9 +15,8 @@ clean:
 clean-all:
 	@${SHELL} scripts/clean.sh all
 
-cross-compiler: linux-headers-cc binutils-cc gcc-static-cc glibc-cc gcc-cc
-
-system: busybox linux clfs-embedded-bootscripts zlib
+rootfs:
+	@${SHELL} scripts/rootfs.sh
 
 linux-headers-cc:
 	@${SHELL} scripts/build.sh linux-headers-cc
