@@ -21,7 +21,7 @@ sudo chmod 4755 ${LJOS}-copy/bin/busybox
 
 cd ${LJOS}-copy/
 
-sudo tar cfJ ../aljos-$(date +%Y%M%d).tar.xz *
+sudo tar cfJ ../aljos-$(date +%Y%m%d).tar.xz *
 
 cd ..
 sudo rm -rf ${LJOS}-copy
