@@ -9,4 +9,4 @@ Please feel free to fork this project to create your own minimal (or not so mini
 
 ## NOTES
 - Support is currently limited to the x86_64 architecture and uses default configurations for busybox and the kernel. This will be changed in the future.
-- This project currently only creates a root filesystem that can be chrooted into. Additional, more easily distribuable formats will be added in the future.
+- This project currently only creates a root filesystem that can be chrooted into. Additional, more easily distributable formats will be added in the future.
