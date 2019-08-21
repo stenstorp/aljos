@@ -4,7 +4,7 @@ source variables
 mkdir -p ${BUILD_DIR}
 unset name version source folder build filename cross
 
-source ${COMPONENTS_DIR}/$1
+source ${COMPONENTS_DIR}/$1/build
 filename="${source##*/}"
 
 if [ ! -z "$cross" ]; then
