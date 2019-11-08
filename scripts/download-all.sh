@@ -4,7 +4,7 @@ source variables
 for f in ${COMPONENTS_DIR}/*; do
 	unset name version source folder build filename
 
-	source $f
+	source $f/build
 	filename="${source##*/}"
 
 	if [ ! -e ${SOURCE_DIR}/${filename} ]; then
