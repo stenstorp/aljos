@@ -1,5 +1,5 @@
 name=busybox
-version=1.31.0
+version=1.31.1
 source=https://busybox.net/downloads/busybox-${version}.tar.bz2
 cross=yes
 
