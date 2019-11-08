@@ -4,14 +4,14 @@ source=https://ftp.gnu.org/gnu/gcc/gcc-${version}/gcc-${version}.tar.xz
 
 build() {
 
-	source ${COMPONENTS_DIR}/gmp
+	source ${COMPONENTS_DIR}/gmp/build
 	gmp_filename="${source##*/}"
-	source ${COMPONENTS_DIR}/mpc
+	source ${COMPONENTS_DIR}/mpc/build
 	mpc_filename="${source##*/}"
-	source ${COMPONENTS_DIR}/mpfr
+	source ${COMPONENTS_DIR}/mpfr/build
 	mpfr_filename="${source##*/}"
 
-	source ${COMPONENTS_DIR}/gcc-static-cc
+	source ${COMPONENTS_DIR}/gcc-static-cc/build
 
 	mkdir gmp mpc mpfr
 	tar -C gmp -xf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
