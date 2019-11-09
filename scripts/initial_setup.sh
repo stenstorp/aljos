@@ -26,14 +26,14 @@ done
 install -dv ${LJOS}/cross-tools{,/bin}
 ln -svf ../proc/mounts ${LJOS}/etc/mtab
 
-cp files/passwd ${LJOS}/etc/passwd
-cp files/group ${LJOS}/etc/group
-cp files/fstab ${LJOS}/etc/fstab
-cp files/profile ${LJOS}/etc/profile
-cp files/HOSTNAME ${LJOS}/etc/HOSTNAME
-cp files/issue ${LJOS}/etc/issue
-cp files/inittab ${LJOS}/etc/inittab
-cp files/mdev.conf ${LJOS}/etc/mdev.conf
+cp files/generic/passwd ${LJOS}/etc/passwd
+cp files/generic/group ${LJOS}/etc/group
+cp files/generic/fstab ${LJOS}/etc/fstab
+cp files/generic/profile ${LJOS}/etc/profile
+cp files/generic/HOSTNAME ${LJOS}/etc/HOSTNAME
+cp files/generic/issue ${LJOS}/etc/issue
+cp files/generic/inittab ${LJOS}/etc/inittab
+cp files/generic/mdev.conf ${LJOS}/etc/mdev.conf
 
 touch ${LJOS}/var/run/utmp ${LJOS}/var/log/{btmp,lastlog,wtmp}
 chmod -v 664 ${LJOS}/var/run/utmp ${LJOS}/var/log/lastlog
