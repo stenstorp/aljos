@@ -1,0 +1,8 @@
+name=linux-firmware
+version=20191022
+source=https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-${version}.tar.gz
+cross=yes
+
+build() {
+	make DESTDIR=${LJOS} install
+}
