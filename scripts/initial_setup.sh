@@ -16,8 +16,10 @@ mkdir -pv ${LJOS}/usr/{,local/}share/{misc,terminfo,zoneinfo}
 mkdir -pv ${LJOS}/usr/{,local/}share/man/man{1,2,3,4,5,6,7,8}
 
 # FIXME - make conditional
-ln -sv lib ${LJOS}/lib64
-ln -sv lib ${LJOS}/usr/lib64
+if [ "${LJOS_BITS}" == "64" ]; then
+	ln -sv lib ${LJOS}/lib64
+	ln -sv lib ${LJOS}/usr/lib64
+fi
 
 for dir in ${LJOS}/usr{,/local}; do
   ln -sv share/{man,doc,info} ${dir}
