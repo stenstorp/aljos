@@ -41,6 +41,7 @@ build() {
 	make -j${THREADS}
 	make install
 
-	cp -v ${LJOS}/cross-tools/${LJOS_TARGET}/lib64/libgcc_s.so.1 ${LJOS}/lib64
-
+	if [ "${LJOS_BITS}" == 64 ]; then
+		cp -v ${LJOS}/cross-tools/${LJOS_TARGET}/lib64/libgcc_s.so.1 ${LJOS}/lib64
+	fi
 }
