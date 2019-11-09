@@ -5,14 +5,12 @@ cp -rf ${LJOS}/ ${LJOS}-copy
 rm -rfv ${LJOS}-copy/cross-tools
 rm -rfv ${LJOS}-copy/usr/src/*
 
-# FIXME - make lib64 conditional
-FILES="$(ls ${LJOS}-copy/usr/lib64/*.a)"
+FILES="$(ls ${LJOS}-copy/usr/lib/*.a)"
 for file in $FILES; do
 	rm -f $file
 done
 
 find ${LJOS}-copy/{,usr/}{bin,lib,sbin} -type f -exec sudo strip --strip-debug '{}' ';'
-find ${LJOS}-copy/{,usr/}lib64 -type f -exec sudo strip --strip-debug '{}' ';'
 
 sudo chown -R root:root ${LJOS}-copy
 sudo chgrp 13 ${LJOS}-copy/var/run/utmp ${LJOS}-copy/var/log/lastlog
