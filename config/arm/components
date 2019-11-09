@@ -1,0 +1,2 @@
+CROSS_COMPILER="linux-raspberrypi-headers-cc binutils-cc gcc-static-cc glibc-cc gcc-cc"
+SYSTEM="busybox raspberrypi-firmware linux-firmware clfs-embedded-bootscripts zlib"

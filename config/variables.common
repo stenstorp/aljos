@@ -13,4 +13,4 @@ export PATH=${LJOS}/cross-tools/bin:/bin:/usr/bin
 # COMPATIBLE PLATFORMS:
 # arm x86_64
 export LJOS_PLATFORM=arm
-source config/variables.${LJOS_PLATFORM}
+source config/${LJOS_PLATFORM}/variables
