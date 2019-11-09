@@ -37,5 +37,10 @@ cp files/generic/issue ${LJOS}/etc/issue
 cp files/generic/inittab ${LJOS}/etc/inittab
 cp files/generic/mdev.conf ${LJOS}/etc/mdev.conf
 
+if [ "${LJOS_ARCH}" == "arm" ]; then
+	cp files/arm/cmdline.txt ${LJOS}/boot
+	cp files/arm/config.txt ${LJOS}/boot
+fi
+
 touch ${LJOS}/var/run/utmp ${LJOS}/var/log/{btmp,lastlog,wtmp}
 chmod -v 664 ${LJOS}/var/run/utmp ${LJOS}/var/log/lastlog
