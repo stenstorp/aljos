@@ -1,0 +1,11 @@
+name=raspberrypi-firmware
+version=1.20190925
+source=https://github.com/raspberrypi/firmware/archive/${version}.tar.gz
+cross=yes
+folder=firmware-${version}
+
+build() {
+	cp -a boot ${LJOS}/
+	cp -a modules ${LJOS}/lib/
+	cp -a opt ${LJOS}/
+}
