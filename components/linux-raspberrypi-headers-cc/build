@@ -1,0 +1,11 @@
+name=linux-raspberrypi
+version=1.20190925-1
+source=https://github.com/raspberrypi/linux/archive/raspberrypi-kernel_${version}.tar.gz
+folder=linux-raspberrypi-kernel_${version}
+
+build() {
+	make mrproper
+	make ARCH=${LJOS_ARCH} headers_check
+	make ARCH=${LJOS_ARCH} INSTALL_HDR_PATH=dest headers_install
+	cp -rv dest/include/* ${LJOS}/usr/include
+}
