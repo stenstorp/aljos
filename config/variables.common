@@ -8,11 +8,9 @@ export BUILD_DIR=$(pwd)/build
 export COMPONENTS_DIR=$(pwd)/components
 
 export THREADS=$(nproc)
-
-export LJOS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
-export LJOS_TARGET=x86_64-unknown-linux-gnu
-export LJOS_CPU=k8
-export LJOS_ARCH=$(echo ${LJOS_TARGET} | sed -e 's/-.*//' -e 's/i.86/i386/')
-export LJOS_ENDIAN=little
-
 export PATH=${LJOS}/cross-tools/bin:/bin:/usr/bin
+
+# COMPATIBLE PLATFORMS:
+# arm x86_64
+export LJOS_PLATFORM=arm
+source config/variables.${LJOS_PLATFORM}

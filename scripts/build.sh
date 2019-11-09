@@ -1,5 +1,5 @@
 #!/bin/bash
-source variables
+source config/variables.common
 
 mkdir -p ${BUILD_DIR}
 unset name version source folder build filename cross
@@ -8,7 +8,7 @@ source ${COMPONENTS_DIR}/$1/build
 filename="${source##*/}"
 
 if [ ! -z "$cross" ]; then
-	source cross-variables
+	source config/cross-variables
 fi
 
 if [ ! -e ${SOURCE_DIR}/${filename} ]; then

@@ -1,5 +1,5 @@
 #!/bin/bash
-source variables
+source config/variables.common
 
 mkdir -pv ${LJOS}
 
@@ -15,6 +15,7 @@ mkdir -pv ${LJOS}/usr/{,local/}share/{doc,info,locale,man}
 mkdir -pv ${LJOS}/usr/{,local/}share/{misc,terminfo,zoneinfo}
 mkdir -pv ${LJOS}/usr/{,local/}share/man/man{1,2,3,4,5,6,7,8}
 
+# FIXME - make conditional
 ln -sv lib ${LJOS}/lib64
 ln -sv lib ${LJOS}/usr/lib64
 

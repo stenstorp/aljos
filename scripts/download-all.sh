@@ -1,5 +1,5 @@
 #!/bin/bash
-source variables
+source config/variables.common
 
 for f in ${COMPONENTS_DIR}/*; do
 	unset name version source folder build filename
@@ -8,6 +8,6 @@ for f in ${COMPONENTS_DIR}/*; do
 	filename="${source##*/}"
 
 	if [ ! -e ${SOURCE_DIR}/${filename} ]; then
-		wget -P ${SOURCE_DIR} ${source}
+		wget -c -P ${SOURCE_DIR} ${source}
 	fi
 done

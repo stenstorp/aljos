@@ -1,10 +1,11 @@
 #!/bin/bash
-source variables
+source config/variables.common
 
 cp -rf ${LJOS}/ ${LJOS}-copy
 rm -rfv ${LJOS}-copy/cross-tools
 rm -rfv ${LJOS}-copy/usr/src/*
 
+# FIXME - make lib64 conditional
 FILES="$(ls ${LJOS}-copy/usr/lib64/*.a)"
 for file in $FILES; do
 	rm -f $file
