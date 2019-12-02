@@ -8,12 +8,12 @@ build() {
 	cd binutils-build/
 
 	../configure \
-	--prefix=${LJOS}/cross-tools \
-	--target=${LJOS_TARGET} \
-	--with-sysroot=${LJOS} \
-	--disable-nls \
-	--enable-shared \
-	--disable-multilib
+		--prefix=${LJOS}/cross-tools \
+		--target=${LJOS_TARGET} \
+		--with-sysroot=${LJOS} \
+		--disable-nls \
+		--enable-shared \
+		--disable-multilib
 
 	make configure-host
 	make -j${THREADS}

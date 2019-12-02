@@ -16,17 +16,17 @@ build() {
 	AR="${LJOS_TARGET}-ar" \
 	RANLIB="${LJOS_TARGET}-ranlib" CFLAGS="-O2" \
 	../configure \
-	--prefix=/usr \
-	--host=${LJOS_TARGET} \
-	--build=${LJOS_HOST} \
-	--disable-profile \
-	--enable-add-ons \
-	--with-tls \
-	--enable-kernel=2.6.32 \
-	--with-__thread \
-	--with-binutils=${LJOS}/cross-tools/bin \
-	--with-headers=${LJOS}/usr/include \
-	--cache-file=config.cache
+		--prefix=/usr \
+		--host=${LJOS_TARGET} \
+		--build=${LJOS_HOST} \
+		--disable-profile \
+		--enable-add-ons \
+		--with-tls \
+		--enable-kernel=2.6.32 \
+		--with-__thread \
+		--with-binutils=${LJOS}/cross-tools/bin \
+		--with-headers=${LJOS}/usr/include \
+		--cache-file=config.cache
 
 	make -j${THREADS}
 	make install_root=${LJOS}/ install

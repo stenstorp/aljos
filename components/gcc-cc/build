@@ -23,20 +23,20 @@ build() {
 
 	AR=ar LDFLAGS="-Wl,-rpath,${LJOS}/cross-tools/lib" \
 	../configure \
-	--prefix=${LJOS}/cross-tools \
-	--build=${LJOS_HOST} \
-	--target=${LJOS_TARGET} \
-	--host=${LJOS_HOST} \
-	--with-sysroot=${LJOS} \
-	--disable-nls \
-	--enable-shared \
-	--enable-languages=c,c++ \
-	--enable-c99 \
-	--enable-long-long \
-	--with-mpfr-include=$(pwd)/../mpfr/src \
-	--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
-	--disable-multilib \
-	--with-arch=${LJOS_CPU}
+		--prefix=${LJOS}/cross-tools \
+		--build=${LJOS_HOST} \
+		--target=${LJOS_TARGET} \
+		--host=${LJOS_HOST} \
+		--with-sysroot=${LJOS} \
+		--disable-nls \
+		--enable-shared \
+		--enable-languages=c,c++ \
+		--enable-c99 \
+		--enable-long-long \
+		--with-mpfr-include=$(pwd)/../mpfr/src \
+		--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
+		--disable-multilib \
+		--with-arch=${LJOS_CPU}
 
 	make -j${THREADS}
 	make install

@@ -23,25 +23,25 @@ build() {
 
 	AR=ar LDFLAGS="-Wl,-rpath,${LJOS}/cross-tools/lib" \
 	../configure \
-	--prefix=${LJOS}/cross-tools \
-	--build=${LJOS_HOST} \
-	--host=${LJOS_HOST} \
-	--target=${LJOS_TARGET} \
-	--with-sysroot=${LJOS}/target \
-	--disable-nls \
-	--disable-shared \
-	--with-mpfr-include=$(pwd)/../mpfr/src \
-	--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
-	--without-headers \
-	--with-newlib \
-	--disable-decimal-float \
-	--disable-libgomp \
-	--disable-libmudflap \
-	--disable-libssp \
-	--disable-threads \
-	--enable-languages=c,c++ \
-	--disable-multilib \
-	--with-arch=${LJOS_CPU}
+		--prefix=${LJOS}/cross-tools \
+		--build=${LJOS_HOST} \
+		--host=${LJOS_HOST} \
+		--target=${LJOS_TARGET} \
+		--with-sysroot=${LJOS}/target \
+		--disable-nls \
+		--disable-shared \
+		--with-mpfr-include=$(pwd)/../mpfr/src \
+		--with-mpfr-lib=$(pwd)/mpfr/src/.libs \
+		--without-headers \
+		--with-newlib \
+		--disable-decimal-float \
+		--disable-libgomp \
+		--disable-libmudflap \
+		--disable-libssp \
+		--disable-threads \
+		--enable-languages=c,c++ \
+		--disable-multilib \
+		--with-arch=${LJOS_CPU}
 
 	make -j${THREADS} all-gcc all-target-libgcc
 	make install-gcc install-target-libgcc
