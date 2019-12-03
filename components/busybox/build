@@ -12,9 +12,3 @@ _install() {
 	cp -v examples/depmod.pl ${LJOS}/cross-tools/bin
 	chmod 755 ${LJOS}/cross-tools/bin/depmod.pl
 }
-
-build() {
-	_configure
-	_make
-	_install
-}

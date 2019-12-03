@@ -48,10 +48,3 @@ _install() {
 		cp -v ${LJOS}/cross-tools/${LJOS_TARGET}/lib64/libgcc_s.so.1 ${LJOS}/lib64
 	fi
 }
-
-build() {
-	_prepare
-	_configure
-	_make
-	_install
-}

@@ -15,9 +15,3 @@ _install() {
 	ln -svf ../../lib/libz.so.1 ${LJOS}/usr/lib/libz.so
 	ln -svf ../../lib/libz.so.1 ${LJOS}/usr/lib/libz.so.1
 }
-
-build() {
-	_configure
-	_make
-	_install
-}

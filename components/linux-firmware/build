@@ -1,7 +1,3 @@
 _install() {
 	make DESTDIR=${LJOS} install
 }
-
-build() {
-	_install()
-}

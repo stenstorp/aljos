@@ -2,7 +2,3 @@ _install() {
 	make DESTDIR=${LJOS}/ install-bootscripts
 	ln -sv ../rc.d/startup ${LJOS}/etc/init.d/rcS
 }
-
-build() {
-	_install
-}

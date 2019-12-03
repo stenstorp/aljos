@@ -31,9 +31,3 @@ _make() {
 _install() {
 	make install_root=${LJOS}/ install
 }
-
-build() {
-	_configure
-	_make
-	_install
-}

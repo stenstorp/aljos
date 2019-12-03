@@ -3,7 +3,3 @@ _install() {
 	cp -a modules ${LJOS}/lib/
 	cp -a opt ${LJOS}/
 }
-
-build() {
-	_install
-}

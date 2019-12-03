@@ -16,9 +16,3 @@ _install() {
 	cp arch/arm/boot/dts/overlays/*.dtb* ${LJOS}/boot/overlays/
 	cp arch/arm/boot/dts/overlays/README ${LJOS}/boot/overlays/
 }
-
-build() {
-	_configure
-	_make
-	_install
-}

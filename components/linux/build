@@ -18,9 +18,3 @@ _install() {
 	-F ${LJOS}/boot/System.map-${version} \
 	-b ${LJOS}/lib/modules/${version}
 }
-
-build() {
-	_configure
-	_make
-	_install
-}

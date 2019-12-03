@@ -24,10 +24,3 @@ _install() {
 
 	cp -v ../include/libiberty.h ${LJOS}/usr/include
 }
-
-
-build() {
-	_configure
-	_make
-	_install
-}
