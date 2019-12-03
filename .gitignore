@@ -1,4 +1,5 @@
 source
 build/
-alj-os
+logs/
+alj-os*
 aljos-*
