@@ -1,6 +1,6 @@
 SHELL=bash
 
-all: download-all clean init cross-compiler system rootfs
+all: init cross-compiler system rootfs
 
 download-all:
 	@${SHELL} scripts/download-all.sh
@@ -11,7 +11,7 @@ cross-compiler:
 system:
 	@${SHELL} scripts/system.sh
 
-init:
+init: clean download-all
 	@${SHELL} scripts/initial_setup.sh
 
 clean:
