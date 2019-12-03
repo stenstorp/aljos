@@ -1,9 +1,4 @@
-name=binutils
-version=2.33.1
-source=https://ftp.gnu.org/gnu/binutils/binutils-${version}.tar.xz
-
-build() {
-
+_configure() {
 	mkdir binutils-build
 	cd binutils-build/
 
@@ -15,13 +10,24 @@ build() {
 		--enable-shared \
 		--disable-multilib
 
+}
+
+_make() {
 	make configure-host
 	make -j${THREADS}
+}
 
+_install() {
 	mkdir ${LJOS}/cross-tools/lib
 	ln -sv lib ${LJOS}/cross-tools/lib64
 	make install
 
 	cp -v ../include/libiberty.h ${LJOS}/usr/include
+}
 
+
+build() {
+	_configure
+	_make
+	_install
 }

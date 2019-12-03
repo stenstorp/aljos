@@ -1,32 +1,31 @@
 #!/bin/bash
 source config/variables.common
 
-mkdir -pv ${LJOS}
+mkdir -p ${LJOS}
 
-mkdir -pv ${LJOS}/{bin,boot/grub,dev,{etc/,}opt,home,lib/{firmware,modules},mnt}
-mkdir -pv ${LJOS}/{proc,media/{floppy,cdrom},sbin,srv,sys}
-mkdir -pv ${LJOS}/var/{lock,log,mail,run,spool}
-mkdir -pv ${LJOS}/var/{opt,cache,lib/{misc,locate},local}
-install -dv -m 0750 ${LJOS}/root
-install -dv -m 1777 ${LJOS}{/var,}/tmp
-install -dv ${LJOS}/etc/init.d
-mkdir -pv ${LJOS}/usr/{,local/}{bin,include,lib,sbin,src}
-mkdir -pv ${LJOS}/usr/{,local/}share/{doc,info,locale,man}
-mkdir -pv ${LJOS}/usr/{,local/}share/{misc,terminfo,zoneinfo}
-mkdir -pv ${LJOS}/usr/{,local/}share/man/man{1,2,3,4,5,6,7,8}
+mkdir -p ${LJOS}/{bin,boot/grub,dev,{etc/,}opt,home,lib/{firmware,modules},mnt}
+mkdir -p ${LJOS}/{proc,media/{floppy,cdrom},sbin,srv,sys}
+mkdir -p ${LJOS}/var/{lock,log,mail,run,spool}
+mkdir -p ${LJOS}/var/{opt,cache,lib/{misc,locate},local}
+install -d -m 0750 ${LJOS}/root
+install -d -m 1777 ${LJOS}{/var,}/tmp
+install -d ${LJOS}/etc/init.d
+mkdir -p ${LJOS}/usr/{,local/}{bin,include,lib,sbin,src}
+mkdir -p ${LJOS}/usr/{,local/}share/{doc,info,locale,man}
+mkdir -p ${LJOS}/usr/{,local/}share/{misc,terminfo,zoneinfo}
+mkdir -p ${LJOS}/usr/{,local/}share/man/man{1,2,3,4,5,6,7,8}
 
-# FIXME - make conditional
 if [ "${LJOS_BITS}" == "64" ]; then
-	ln -sv lib ${LJOS}/lib64
-	ln -sv lib ${LJOS}/usr/lib64
+	ln -s lib ${LJOS}/lib64
+	ln -s lib ${LJOS}/usr/lib64
 fi
 
 for dir in ${LJOS}/usr{,/local}; do
-  ln -sv share/{man,doc,info} ${dir}
+  ln -s share/{man,doc,info} ${dir}
 done
 
-install -dv ${LJOS}/cross-tools{,/bin}
-ln -svf ../proc/mounts ${LJOS}/etc/mtab
+install -d ${LJOS}/cross-tools{,/bin}
+ln -sf ../proc/mounts ${LJOS}/etc/mtab
 
 cp files/generic/passwd ${LJOS}/etc/passwd
 cp files/generic/group ${LJOS}/etc/group
@@ -43,4 +42,4 @@ if [ "${LJOS_ARCH}" == "arm" ]; then
 fi
 
 touch ${LJOS}/var/run/utmp ${LJOS}/var/log/{btmp,lastlog,wtmp}
-chmod -v 664 ${LJOS}/var/run/utmp ${LJOS}/var/log/lastlog
+chmod 664 ${LJOS}/var/run/utmp ${LJOS}/var/log/lastlog

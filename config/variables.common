@@ -2,10 +2,12 @@ set +h
 umask 022
 export LC_ALL=POSIX
 
+export BUILDROOT=$(pwd)
 export LJOS=$(pwd)/alj-os
 export SOURCE_DIR=$(pwd)/source
 export BUILD_DIR=$(pwd)/build
 export COMPONENTS_DIR=$(pwd)/components
+export LOG_DIR=$(pwd)/logs
 
 export THREADS=$(nproc)
 export PATH=${LJOS}/cross-tools/bin:/bin:/usr/bin

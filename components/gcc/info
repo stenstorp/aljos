@@ -1,0 +1,3 @@
+name=gcc
+version=9.2.0
+source=https://ftp.gnu.org/gnu/gcc/gcc-${version}/gcc-${version}.tar.xz

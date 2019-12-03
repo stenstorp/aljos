@@ -1,14 +1,12 @@
-name=linux
-version=4.19.82
-source=https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${version}.tar.xz
-cross=yes
-
-build() {
-
+_configure() {
 	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- x86_64_defconfig
+}
 
+_make() {
 	make -j${THREADS} ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}-
+}
 
+_install() {
 	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- \
 	INSTALL_MOD_PATH=${LJOS} modules_install
 
@@ -19,5 +17,10 @@ build() {
 	${LJOS}/cross-tools/bin/depmod.pl \
 	-F ${LJOS}/boot/System.map-${version} \
 	-b ${LJOS}/lib/modules/${version}
+}
 
+build() {
+	_configure
+	_make
+	_install
 }

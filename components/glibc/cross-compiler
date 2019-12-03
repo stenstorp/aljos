@@ -1,9 +1,4 @@
-name=glibc
-version=2.30
-source=https://ftp.gnu.org/gnu/glibc/glibc-${version}.tar.xz
-
-build() {
-
+_configure() {
 	mkdir glibc-build
 	cd glibc-build/
 
@@ -27,8 +22,18 @@ build() {
 		--with-binutils=${LJOS}/cross-tools/bin \
 		--with-headers=${LJOS}/usr/include \
 		--cache-file=config.cache
+}
 
+_make() {
 	make -j${THREADS}
-	make install_root=${LJOS}/ install
+}
 
+_install() {
+	make install_root=${LJOS}/ install
+}
+
+build() {
+	_configure
+	_make
+	_install
 }

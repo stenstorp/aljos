@@ -1,0 +1,4 @@
+name=linux-raspberrypi       
+version=1.20190925-1
+source=https://github.com/raspberrypi/linux/archive/raspberrypi-kernel_${version}.tar.gz
+folder=linux-raspberrypi-kernel_${version}

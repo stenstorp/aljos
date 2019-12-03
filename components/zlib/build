@@ -1,16 +1,23 @@
-name=zlib
-version=1.2.11
-source=https://www.zlib.net/zlib-${version}.tar.gz
-cross=yes
-
-build() {
-
+_configure() {
 	sed -i 's/-O3/-Os/g' configure
 	./configure --prefix=/usr --shared
+}
+
+_make() {
 	make -j${THREADS}
+}
+
+
+_install() {
 	make DESTDIR=${LJOS}/ install
 
 	mv -v ${LJOS}/usr/lib/libz.so.* ${LJOS}/lib
 	ln -svf ../../lib/libz.so.1 ${LJOS}/usr/lib/libz.so
 	ln -svf ../../lib/libz.so.1 ${LJOS}/usr/lib/libz.so.1
+}
+
+build() {
+	_configure
+	_make
+	_install
 }

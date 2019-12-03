@@ -1,10 +1,10 @@
-name=linux
-version=4.19.82
-source=https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${version}.tar.xz
-
-build() {
+_install() {
 	make mrproper
 	make ARCH=${LJOS_ARCH} headers_check
 	make ARCH=${LJOS_ARCH} INSTALL_HDR_PATH=dest headers_install
 	cp -rv dest/include/* ${LJOS}/usr/include
+}
+
+build() {
+	_install
 }

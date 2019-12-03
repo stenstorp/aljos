@@ -1,15 +1,12 @@
-name=linux-raspberrypi       
-version=1.20190925-1
-source=https://github.com/raspberrypi/linux/archive/raspberrypi-kernel_${version}.tar.gz
-cross=yes
-folder=linux-raspberrypi-kernel_${version}
-
-build() {
-
+_configure() {
 	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- bcmrpi_defconfig
+}
 
+_make() {
 	make -j${THREADS} ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- zImage modules dtbs
+}
 
+_install() {
 	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- \
 	INSTALL_MOD_PATH=${LJOS} modules_install
 
@@ -18,5 +15,10 @@ build() {
 	mkdir ${LJOS}/boot/overlays
 	cp arch/arm/boot/dts/overlays/*.dtb* ${LJOS}/boot/overlays/
 	cp arch/arm/boot/dts/overlays/README ${LJOS}/boot/overlays/
+}
 
+build() {
+	_configure
+	_make
+	_install
 }

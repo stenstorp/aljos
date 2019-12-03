@@ -1,23 +1,20 @@
-name=gcc
-version=9.2.0
-source=https://ftp.gnu.org/gnu/gcc/gcc-${version}/gcc-${version}.tar.xz
-
-build() {
-
-	source ${COMPONENTS_DIR}/gmp/build
+_prepare() {
+	source ${COMPONENTS_DIR}/gmp/info
 	gmp_filename="${source##*/}"
-	source ${COMPONENTS_DIR}/mpc/build
+	source ${COMPONENTS_DIR}/mpc/info
 	mpc_filename="${source##*/}"
-	source ${COMPONENTS_DIR}/mpfr/build
+	source ${COMPONENTS_DIR}/mpfr/info
 	mpfr_filename="${source##*/}"
 
-	source ${COMPONENTS_DIR}/gcc-static-cc/build
+	source ${COMPONENTS_DIR}/gcc-static-cc/info
 
 	mkdir gmp mpc mpfr
 	tar -C gmp -xf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
 	tar -C mpc -xf ${SOURCE_DIR}/${mpc_filename} --strip-components 1
 	tar -C mpfr -xf ${SOURCE_DIR}/${mpfr_filename} --strip-components 1
+}
 
+_configure() {
 	mkdir gcc-static
 	cd gcc-static/
 
@@ -42,10 +39,21 @@ build() {
 		--enable-languages=c,c++ \
 		--disable-multilib \
 		--with-arch=${LJOS_CPU}
+}
 
+_make() {
 	make -j${THREADS} all-gcc all-target-libgcc
+}
+
+_install() {
 	make install-gcc install-target-libgcc
 
 	ln -vs libgcc.a `${LJOS_TARGET}-gcc -print-libgcc-file-name | sed 's/libgcc/&_eh/'`
+}
 
+build() {
+	_prepare
+	_configure
+	_make
+	_install
 }
