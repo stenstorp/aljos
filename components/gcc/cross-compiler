@@ -6,7 +6,7 @@ _prepare() {
         source ${COMPONENTS_DIR}/mpfr/info
         mpfr_filename="${source##*/}"
 
-        source ${COMPONENTS_DIR}/gcc-cc/info
+        source ${COMPONENTS_DIR}/gcc/info
 
         mkdir gmp mpc mpfr
         tar -C gmp -xf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
