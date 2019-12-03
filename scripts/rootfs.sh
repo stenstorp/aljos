@@ -20,7 +20,7 @@ sudo chmod 4755 ${LJOS}-copy/bin/busybox
 
 cd ${LJOS}-copy/
 
-sudo tar cfJ ../aljos-$(date +%Y%m%d).tar.xz *
+sudo XZ_OPT="--threads=${THREADS}" tar cfJ ../aljos-$(date +%Y%m%d).tar.xz *
 
 cd ..
 sudo rm -rf ${LJOS}-copy
