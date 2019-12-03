@@ -2,8 +2,8 @@
 source config/variables.common
 
 cp -rf ${LJOS}/ ${LJOS}-copy
-rm -rfv ${LJOS}-copy/cross-tools
-rm -rfv ${LJOS}-copy/usr/src/*
+rm -rf ${LJOS}-copy/cross-tools
+rm -rf ${LJOS}-copy/usr/src/*
 
 FILES="$(ls ${LJOS}-copy/usr/lib/*.a)"
 for file in $FILES; do
