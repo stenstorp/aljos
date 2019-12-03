@@ -9,10 +9,7 @@ export BUILD_DIR=$(pwd)/build
 export COMPONENTS_DIR=$(pwd)/components
 export LOG_DIR=$(pwd)/logs
 
-export THREADS=$(nproc)
 export PATH=${LJOS}/cross-tools/bin:/bin:/usr/bin
 
-# COMPATIBLE PLATFORMS:
-# arm x86_64
-export LJOS_PLATFORM=arm
-source config/${LJOS_PLATFORM}/variables
+source ${BUILDROOT}/config
+source variables/${LJOS_PLATFORM}/variables

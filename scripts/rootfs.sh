@@ -1,5 +1,5 @@
 #!/bin/bash
-source config/variables.common
+source variables/variables.common
 
 cp -rf ${LJOS}/ ${LJOS}-copy
 rm -rf ${LJOS}-copy/cross-tools

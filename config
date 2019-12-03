@@ -1,0 +1,6 @@
+# Threads for builds
+THREADS=$(nproc)
+
+# Compatible arch's
+# arm x86_64
+LJOS_ARCH=arm

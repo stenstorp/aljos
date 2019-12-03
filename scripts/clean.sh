@@ -1,5 +1,5 @@
 #!/bin/bash
-source config/variables.common
+source variables/variables.common
 
 rm -rf ${LJOS}
 rm -rf ${BUILD_DIR}

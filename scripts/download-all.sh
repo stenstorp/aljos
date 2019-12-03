@@ -1,5 +1,5 @@
 #!/bin/bash
-source config/variables.common
+source variables/variables.common
 
 for f in ${COMPONENTS_DIR}/*; do
 	unset name version source folder build filename

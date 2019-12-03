@@ -1,6 +1,6 @@
 #!/bin/bash
-source config/variables.common
-source config/${LJOS_ARCH}/components
+source variables/variables.common
+source variables/${LJOS_ARCH}/components
 
 for f in ${SYSTEM}; do
 	scripts/build.sh $f

@@ -1,5 +1,5 @@
 #!/bin/bash
-source config/variables.common
+source variables/variables.common
 
 mkdir -p ${BUILD_DIR}
 unset name version source folder filename cross
