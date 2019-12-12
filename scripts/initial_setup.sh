@@ -15,6 +15,10 @@ mkdir -p ${LJOS}/usr/{,local/}share/{doc,info,locale,man}
 mkdir -p ${LJOS}/usr/{,local/}share/{misc,terminfo,zoneinfo}
 mkdir -p ${LJOS}/usr/{,local/}share/man/man{1,2,3,4,5,6,7,8}
 
+mkdir -p ${LJOS}/etc/network
+mkdir -p ${LJOS}/etc/network/if-{post-{up,down},pre-{up,down},up,down}.d
+mkdir -p ${LJOS}/usr/share/udhcpc
+
 if [ "${LJOS_BITS}" == "64" ]; then
 	ln -s lib ${LJOS}/lib64
 	ln -s lib ${LJOS}/usr/lib64
@@ -35,6 +39,8 @@ cp files/generic/HOSTNAME ${LJOS}/etc/HOSTNAME
 cp files/generic/issue ${LJOS}/etc/issue
 cp files/generic/inittab ${LJOS}/etc/inittab
 cp files/generic/mdev.conf ${LJOS}/etc/mdev.conf
+cp files/generic/interfaces ${LJOS}/etc/network/interfaces
+cp files/generic/default.script ${LJOS}/usr/share/udhcpc/default.script
 
 if [ "${LJOS_ARCH}" == "arm" ]; then
 	cp files/arm/cmdline.txt ${LJOS}/boot
