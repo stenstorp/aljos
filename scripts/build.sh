@@ -10,7 +10,7 @@ filename="${source##*/}"
 
 if [ "$2" != "cross-compiler" ]; then
 	STAGE="build"
-	source config/cross-variables
+	source variables/cross-variables
 else
 	STAGE="cross-compiler"
 fi
