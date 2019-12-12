@@ -8,10 +8,10 @@ _prepare() {
 
 	source ${COMPONENTS_DIR}/gcc-static/info
 
-	mkdir gmp mpc mpfr
-	tar -C gmp -xf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
-	tar -C mpc -xf ${SOURCE_DIR}/${mpc_filename} --strip-components 1
-	tar -C mpfr -xf ${SOURCE_DIR}/${mpfr_filename} --strip-components 1
+	mkdir -v gmp mpc mpfr
+	tar -C gmp -xvf ${SOURCE_DIR}/${gmp_filename} --strip-components 1
+	tar -C mpc -xvf ${SOURCE_DIR}/${mpc_filename} --strip-components 1
+	tar -C mpfr -xvf ${SOURCE_DIR}/${mpfr_filename} --strip-components 1
 }
 
 _configure() {
