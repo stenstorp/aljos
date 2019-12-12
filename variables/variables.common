@@ -12,4 +12,4 @@ export LOG_DIR=$(pwd)/logs
 export PATH=${LJOS}/cross-tools/bin:/bin:/usr/bin
 
 source ${BUILDROOT}/config
-source variables/${LJOS_PLATFORM}/variables
+source variables/${LJOS_ARCH}/variables

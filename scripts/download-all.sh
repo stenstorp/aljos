@@ -1,4 +1,5 @@
 #!/bin/bash
+source config
 source variables/variables.common
 
 for f in ${COMPONENTS_DIR}/*; do
