@@ -1,0 +1,6 @@
+export LJOS_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
+export LJOS_TARGET=i686-linux-gnu
+export LJOS_CPU=i686
+export LJOS_ARCH="x86"
+export LJOS_ENDIAN=little
+export LJOS_BITS=32

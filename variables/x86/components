@@ -1,0 +1,2 @@
+CROSS_COMPILER="linux-headers binutils gcc-static glibc gcc"
+SYSTEM="busybox linux linux-firmware clfs-embedded-bootscripts zlib"

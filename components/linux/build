@@ -1,5 +1,14 @@
 _configure() {
-	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- x86_64_defconfig
+
+	case ${LJOS_ARCH} in
+	x86)
+		make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- i386_defconfig ;;
+	x86_64)
+		make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- x86_64_defconfig ;;
+	*)
+		echo "arch: ${LJOS_ARCH} not supported"
+		exit ;;
+	esac
 }
 
 _make() {
@@ -8,7 +17,14 @@ _make() {
 
 _install() {
 	make ARCH=${LJOS_ARCH} CROSS_COMPILE=${LJOS_TARGET}- \
-	INSTALL_MOD_PATH=${LJOS} modules_install
+
+	case ${LJOS_ARCH} in
+	x86|x86_64)
+		INSTALL_MOD_PATH=${LJOS} modules_install ;;
+	*)
+		echo "arch: ${LJOS_ARCH} not supported"
+		exit ;;
+	esac
 
 	cp -v arch/x86/boot/bzImage ${LJOS}/boot/vmlinuz-${version}
 	cp -v System.map ${LJOS}/boot/System.map-${version}
