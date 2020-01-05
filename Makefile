@@ -1,6 +1,6 @@
 SHELL=bash
 
-all: download-all init cross-compiler system rootfs
+all: init cross-compiler system rootfs
 
 download-all:
 	@${SHELL} scripts/download-all.sh
