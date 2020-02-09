@@ -1,0 +1,23 @@
+_configure() {
+	mkdir binutils-build
+	cd binutils-build/
+
+	../configure --prefix=/usr       \
+		--host=${LJOS_TARGET} \
+		--target=${LJOS_TARGET} \
+		--enable-gold       \
+		--enable-ld=default \
+		--enable-plugins    \
+		--enable-shared     \
+		--disable-werror    \
+		--enable-64-bit-bfd \
+		--with-system-zlib
+}
+
+_make() {
+	make tooldir=/usr -j${THREADS}
+}
+
+_install() {
+	make tooldir=/usr install DESTDIR=${LJOS}
+}
