@@ -1,2 +1,3 @@
 CROSS_COMPILER="linux-raspberrypi-headers binutils gcc-static glibc gcc"
 SYSTEM="busybox raspberrypi-firmware linux-firmware clfs-embedded-bootscripts zlib file bash binutils gcc"
+CROSS_SYSTEM="ncurses"

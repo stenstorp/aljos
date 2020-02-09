@@ -4,3 +4,4 @@ export LJOS_CPU=armv6
 export LJOS_ARCH=$(echo ${LJOS_TARGET} | sed -e 's/-.*//')
 export LJOS_ENDIAN=little
 export LJOS_BITS=32
+export LJOS_QEMU=qemu-arm-static
