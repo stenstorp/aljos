@@ -20,7 +20,7 @@ _install() {
 
 	case ${LJOS_ARCH} in
 	x86|x86_64)
-		INSTALL_MOD_PATH=${LJOS} modules_install ;;
+		make INSTALL_MOD_PATH=${LJOS} modules_install ;;
 	*)
 		echo "arch: ${LJOS_ARCH} not supported"
 		exit ;;
