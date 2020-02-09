@@ -5,11 +5,6 @@ cp -rf ${LJOS}/ ${LJOS}-copy
 rm -rf ${LJOS}-copy/cross-tools
 rm -rf ${LJOS}-copy/usr/src/*
 
-FILES="$(ls ${LJOS}-copy/usr/lib/*.a)"
-for file in $FILES; do
-	rm -f $file
-done
-
 find ${LJOS}-copy/{,usr/}{bin,lib,sbin} -type f -exec sudo strip --strip-debug '{}' ';'
 
 sudo chown -R root:root ${LJOS}-copy
