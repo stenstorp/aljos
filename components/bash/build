@@ -1,0 +1,15 @@
+_configure() {
+	./configure --prefix=/usr                    \
+		--docdir=/usr/share/doc/bash-${version} \
+		--without-bash-malloc            \
+		--with-installed-readline
+}
+
+_make() {
+	make -j${THREADS}
+}
+
+_install() {
+	make install DESTDIR=${LJOS}
+	ln -s /usr/bin/bash ${LJOS}/bin/bash
+}
