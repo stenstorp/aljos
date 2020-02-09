@@ -1,0 +1,16 @@
+_configure() {
+	sed -i '211,217 d; 219,229 d; 232 d' glob/glob.c
+
+	./configure \
+		--prefix=/usr \
+		--host=${LJOS_TARGET} \
+		--target=${LJOS_TARGET}
+}
+
+_make() {
+	make -j${THREADS}
+}
+
+_install() {
+	make install DESTDIR=${LJOS}
+}
