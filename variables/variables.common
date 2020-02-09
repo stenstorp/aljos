@@ -3,7 +3,7 @@ umask 022
 export LC_ALL=POSIX
 
 export BUILDROOT=$(pwd)
-export LJOS=$(pwd)/alj-os
+export LJOS=$(pwd)/aljos
 export SOURCE_DIR=$(pwd)/source
 export BUILD_DIR=$(pwd)/build
 export COMPONENTS_DIR=$(pwd)/components
