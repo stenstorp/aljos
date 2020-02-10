@@ -1,4 +1,7 @@
 _prepare() {
+	cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
+		`dirname $(${LJOS_TARGET}-gcc -print-libgcc-file-name)`/include-fixed/limits.h
+
 	source ${COMPONENTS_DIR}/gmp/info
         gmp_filename="${source##*/}"
         source ${COMPONENTS_DIR}/mpc/info
