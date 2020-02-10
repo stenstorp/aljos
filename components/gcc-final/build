@@ -1,0 +1,21 @@
+_configure() {
+	mkdir -v build
+	cd build
+
+	../configure --prefix=/usr       \
+		--enable-languages=c,c++ \
+		--disable-multilib       \
+		--disable-bootstrap      \
+		--with-system-zlib
+}
+
+_make() {
+	cd build
+	make -j${THREADS}
+}
+
+_install() {
+	cd build
+	make install
+	ln -sv gcc /usr/bin/cc
+}
