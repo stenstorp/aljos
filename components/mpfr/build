@@ -1,0 +1,11 @@
+_configure() {
+	./configure --prefix=/usr
+}
+
+_make() {
+	make -j${THREADS}
+}
+
+_install() {
+	make install
+}
