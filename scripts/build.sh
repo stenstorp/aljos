@@ -31,32 +31,32 @@ fi
 cd ${BUILD_DIR}/${folder}
 
 if [ ! -e "${LOG_DIR}/$1" ]; then
-	mkdir -p ${LOG_DIR}/$1
+	mkdir -p ${LOG_DIR}/${STAGE}/$1
 fi
 
 if [ ! -z $(type -t _prepare) ]; then
 	echo "$1: preparing..."
-	_prepare &> ${LOG_DIR}/$1/$1-prepare.log || exit 1
+	_prepare &> ${LOG_DIR}/${STAGE}/$1/$1-prepare.log || exit 1
 fi
 
 if [ ! -z $(type -t _configure) ]; then
 	echo "$1: configuring..."
-	_configure &> ${LOG_DIR}/$1/$1-configure.log || exit 1
+	_configure &> ${LOG_DIR}/${STAGE}/$1/$1-configure.log || exit 1
 fi
 
 if [ ! -z $(type -t _make) ]; then
 	echo "$1: making..."
-	_make &> ${LOG_DIR}/$1/$1-make.log || exit 1
+	_make &> ${LOG_DIR}/${STAGE}/$1/$1-make.log || exit 1
 fi
 
 if [ ! -z $(type -t _install) ]; then
 	echo "$1: installing..."
-	_install &> ${LOG_DIR}/$1/$1-install.log || exit 1
+	_install &> ${LOG_DIR}/${STAGE}/$1/$1-install.log || exit 1
 fi
 
 if [ ! -z $(type -t _post) ]; then
 	echo "$1: post scripts..."
-	_post &> ${LOG_DIR}/$1/$1-post.log || exit 1
+	_post &> ${LOG_DIR}/${STAGE}/$1/$1-post.log || exit 1
 fi
 
 cd ${BUILDROOT}
